@@ -36,7 +36,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 
-ALLOWED_HOSTS = ['pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com']
+ALLOWED_HOSTS = ['pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -123,14 +123,7 @@ DATABASES = {
  'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
-# Cloudinary configuration
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET')
-}
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4' 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -170,14 +163,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'
+STATICFILES_DIRS =[os.path.join(BASE_DIR,'static')]
+STATIC_ROOT =os.path(BASE_DIR,'staticfiles')
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 
