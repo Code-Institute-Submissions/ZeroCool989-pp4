@@ -1,28 +1,141 @@
-{% load static %} 
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Blog{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-<body>
-    <header>
-        <h1><a href="{% url 'home' %}">My Blog</a></h1>
-    </header>
+    <title>DailyFinancePulse!</title>
 
-    <nav>
-        <!-- Navigation items -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon from Cloudinary -->
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/drqluthko/image/upload/v1706178341/hgx0rbz0grnlf8nbeyls.png">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <!-- FontAwesome Kit -->
+    <script src="https://kit.fontawesome.com/4912cd7289.js" crossorigin="anonymous"></script>
+</head>
+
+
+<body class="d-flex flex-column h-100 main-bg">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <!-- Navbar Brand with Logo from Cloudinary -->
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="https://res.cloudinary.com/drqluthko/image/upload/v1706178341/glwl3kolxrmfnddzqhyh.png" alt="DailyFinancePulse Logo" height="100">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <span class="navbar-text text-muted">
+                    Your Source for Financial Insights and Updates
+                </span>
+            </div>
+        </div>
     </nav>
 
-    <main>
+    <!-- Messages Section -->
+    <div class="container mt-4"> 
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message | safe }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow-1 main-bg">
         {% block content %}
-        {% endblock %}
+        <!-- Dynamic content will be inserted here -->
+        {% endblock content %}
     </main>
 
-    <footer>
-        <p>© 2024 My Blog</p>
-    </footer>
+<!-- Footer -->
+<footer id="social-networks" class="dark-bg" style="margin-top: 20px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="mb-4">Website created by</h2>
+                <a href="https://zerocool989.github.io/porfolio-project-1/" target="_blank" class="text-white">
+                    Almir Dumisic - Full Stack Developer, Code Institute Student
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h2 class="mb-4">Social Networks</h2>
+                <ul class="social-networks">
+                    <li>
+                        <a href="https://www.linkedin.com/in/almir-dumisic/" target="_blank">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.xing.com/profile/Almir_Dumisic/cv?back_to=mehub" target="_blank">
+                            <i class="fa-brands fa-xing"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/ZeroCool989" target="_blank">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+    <!-- Script to Auto-Close Alert Messages After 3 Seconds -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() { 
+            let alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                setTimeout(function() {
+                    new bootstrap.Alert(alert).close();
+                }, 3000);
+            });
+        });
+    </script>
 </body>
 </html>

@@ -30,13 +30,17 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-X_FRAME_OPTIONS = 'SAMEORIGIN'
+ALLOWED_HOSTS = [
+    '8000-zerocool989-pp4-5swibsdgig0.ws-eu107.gitpod.io',
+    '127.0.0.1',
+    'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',
+]
 
-
-
-ALLOWED_HOSTS = ['localhost','dailyfinancepulse-9ee5b1b4407f.herokuapp.com', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-zerocool989-pp4-5swibsdgig0.ws-eu107.gitpod.io',
+]
 
 # Application definition
 
@@ -53,7 +57,6 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
-    'crispy_forms',
     'django_summernote',
     'financenews',
 ]
