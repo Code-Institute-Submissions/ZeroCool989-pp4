@@ -36,10 +36,10 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 
-ALLOWED_HOSTS = [ 'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com', 'localhost',]
+ALLOWED_HOSTS = [ 'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-zerocool989-pp4-5swibsdgig0.ws-eu107.gitpod.io',
+    'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',
 ]
 
 # Application definition
