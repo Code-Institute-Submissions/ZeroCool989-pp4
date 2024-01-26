@@ -36,7 +36,7 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 
-ALLOWED_HOSTS = [ 'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',]
+ALLOWED_HOSTS = [ 'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com']
 
 
 # Application definition
