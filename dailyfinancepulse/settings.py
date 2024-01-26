@@ -38,9 +38,6 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = [ 'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',]
 
-CSRF_TRUSTED_ORIGINS = [
-    'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',
-]
 
 # Application definition
 
