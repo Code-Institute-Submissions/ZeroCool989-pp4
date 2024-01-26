@@ -32,15 +32,11 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-X_FRAME_OPTIONS= 'SAMEORIGIN'
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 
 
-ALLOWED_HOSTS = [
-    '8000-zerocool989-pp4-5swibsdgig0.ws-eu107.gitpod.io',
-    '127.0.0.1',
-    'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com',
-]
+ALLOWED_HOSTS = [ 'pp4-dailyfinancepulse-bad0d88857ab.herokuapp.com', 'localhost',]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-zerocool989-pp4-5swibsdgig0.ws-eu107.gitpod.io',
